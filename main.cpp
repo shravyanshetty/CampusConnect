@@ -7,7 +7,8 @@ struct Event{
     string name;
 };
 
-Event events[100];
+const int maxevents=100;
+Event events[maxevents];
 int eventCount=0;
 /*-------------view the events------------*/
 
@@ -15,20 +16,21 @@ int eventCount=0;
 void view(){
 
     if(eventCount==0){
-        cout<<"NO EVENTS TO DISPLAY\n";
+        cout<<"\nNO EVENTS TO DISPLAY\n\n";
         return ;
-    }else{
-        cout<<"----Up Comming College Events----\n";
+    }
+
+        cout<<"\n----Up Comming College Events----\n\n";
             for(int i=0;i<eventCount;++i){
                 cout<<"Event"<<i+1<<":\n";
 
                     cout<<"Name:"<<events[i].name;
                     cout<<"\nDate:"<<events[i].date;
                     cout<<"\nType:"<<events[i].type<<"\n";
-                cout<<"--------------------\n";
+                cout<<"--------------------\n\n\n";
             }
-    }
 }
+
 
 /*-------------filtering by category------------*/
 
@@ -47,12 +49,12 @@ void filter(){
 
     for(int i=0;i<eventCount;i++){
         if(events[i].type==type){
-            cout<<"Event: "<<events[i].name<<"\nDate: "<<events[i].date<<"\n";
+            cout<<"Event: "<<events[i].name<<"\nDate: "<<events[i].date<<"\n\n\n";
             found=true;
         }
     }
     if(!found){
-        cout<<"No events found in this Category.\n";
+        cout<<"\n\nNo events found in this Category.\n\n";
     }
 }
 
@@ -60,36 +62,44 @@ void filter(){
 
 
 void add(){
-    Event newevent;
+    if(eventCount>=maxevents){
+        cout<<"--LIMIT REACHED TO MAX--\n\n";
+        return;
+    }
 
-    cout<<"----Add New Event----\n";
+    Event newevent;
+    cout<<"\n\n\n----Add New Event----\n\n";
 
         cout<<"Enter event name: ";
         getline(cin,newevent.name);
 
-        cout<<"Enter event date: ";
+        cout<<"\n\nEnter event date: ";
         getline(cin,newevent.date);
       
-        cout<<"Enter event type(cultural,technical,sports): ";
+        cout<<"\n\nEnter event type(cultural,technical,sports): ";
         getline(cin,newevent.type);
 
-        events[eventCount++]=newevent;     
-        cout<<"Successfully added the event!!\n";
+        events[eventCount]=newevent;
+        eventCount++;
+
+        cout<<"\n\n-------Successfully added the event!!-------\n\n";
     }
 
 
 int main(){
     int choice;
-    while(true){
-        cout<<"----MENU----\n";
+    while(1){
+        cout<<"\n\n\n----MENU----\n\n\n";
         cout<<"1.VIEW EVENTS\n";
         cout<<"2.FILTER EVENTS BY TYPE\n";
         cout<<"3.ADD NEW EVENT\n";
-        cout<<"4.EXIT\n";
+        cout<<"4.EXIT\n\n\n";
 
         cout<<"Enter your choice: ";
         cin>>choice;
 
+        cin.ignore();
+    
         /*switch case*/
 
         switch(choice){
@@ -103,11 +113,10 @@ int main(){
                 add();
                 break;
             case 4:
-                break;
+                cout<<"Exiting the program..\n";
+                return 0;
             default:
                 cout<<"Invalid!!\n";
         }
-
     }
-return 0;
 }
