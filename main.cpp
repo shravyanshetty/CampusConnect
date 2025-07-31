@@ -39,7 +39,7 @@ void add(vector<Event> &events){
     cout<<"----Add New Event----\n";
 
         cout<<"Enter event name: ";
-        
+        getline(cin,)
         cout<<"Enter event date: ";
         cout<<"Enter event type: ";
 }
