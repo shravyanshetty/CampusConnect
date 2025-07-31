@@ -10,7 +10,8 @@ struct Event{
 /*vector to hold events*/
 vector<Event> events;
 
-/*veiw function*/
+/*-------------view the events------------*/
+
 
 void veiw(const vector<Event> &events){
     if(events.empty){
@@ -29,6 +30,8 @@ void veiw(const vector<Event> &events){
     }
 }
 
+/*-------------filtering by category------------*/
+
 void filter(const vector<Event> & events){
     string type;
 
@@ -39,8 +42,24 @@ void filter(const vector<Event> & events){
     cout<<"Enter your choice: ";
     getline(cin,type);
 
+    bool found=false;
+    cout<<"---Events in "<<type<<"---\n";
+
+    for(int i=0;i<events.size();i++){
+        if(events[i].type==type){
+            cout<<"Event: "<<events[i].name<<"\nDate: "<<events[i].date<<"\n";
+            found=true;
+        }
+    }
+    if(!found){
+        cout<<"No events found in this Category.\n";
+    }
+
 
 }
+
+/*-------------add events------------*/
+
 
 void add(vector<Event> &events){
     Event newevent;
@@ -59,6 +78,7 @@ void add(vector<Event> &events){
         events.push_back(newevent);     /*used to add the event at the end */
         cout<<"Successfully added the event!!\n";
     }
+    
 
 int main(){
     int choice;
@@ -79,7 +99,7 @@ int main(){
                 veiw(events);
                 break;
             case 2:
-                filter();
+                filter(events);
                 break;
             case 3:
                 add(events);
