@@ -29,7 +29,16 @@ void veiw(const vector<Event> &events){
     }
 }
 
-void filter(){
+void filter(const vector<Event> & events){
+    string type;
+
+    cout<<"---CATEGORY----\n";
+    cout<<"1.Cultural\n";
+    cout<<"2.Technical\n";
+    cout<<"3.Sports\n";
+    cout<<"Enter your choice: ";
+    getline(cin,type);
+
 
 }
 
@@ -39,10 +48,17 @@ void add(vector<Event> &events){
     cout<<"----Add New Event----\n";
 
         cout<<"Enter event name: ";
-        getline(cin,)
+        getline(cin,newevent.name);
+
         cout<<"Enter event date: ";
-        cout<<"Enter event type: ";
-}
+        getline(cin,newevent.date);
+      
+        cout<<"Enter event type(cultural,technical,sports): ";
+        getline(cin,newevent.type);
+
+        events.push_back(newevent);     /*used to add the event at the end */
+        cout<<"Successfully added the event!!\n";
+    }
 
 int main(){
     int choice;
@@ -66,12 +82,12 @@ int main(){
                 filter();
                 break;
             case 3:
-                add();
+                add(events);
                 break;
             case 4:
                 break;
             default:
-                cout<<"Invalid!!";
+                cout<<"Invalid!!\n";
         }
 
     }
