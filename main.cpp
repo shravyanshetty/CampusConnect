@@ -5,21 +5,21 @@ struct Event{
     string date;
     string type;
     string name;
-}
+};
 
-/*vector to hold events*/
-vector<Event> events;
-
+Event events[100];
+int eventCount=0;
 /*-------------view the events------------*/
 
 
-void veiw(const vector<Event> &events){
-    if(events.empty){
+void view(){
+
+    if(eventCount==0){
         cout<<"NO EVENTS TO DISPLAY\n";
-        return 0;
+        return ;
     }else{
         cout<<"----Up Comming College Events----\n";
-            for(int i=0;i<events.size();++i){
+            for(int i=0;i<eventCount;++i){
                 cout<<"Event"<<i+1<<":\n";
 
                     cout<<"Name:"<<events[i].name;
@@ -32,7 +32,7 @@ void veiw(const vector<Event> &events){
 
 /*-------------filtering by category------------*/
 
-void filter(const vector<Event> & events){
+void filter(){
     string type;
 
     cout<<"---CATEGORY----\n";
@@ -45,7 +45,7 @@ void filter(const vector<Event> & events){
     bool found=false;
     cout<<"---Events in "<<type<<"---\n";
 
-    for(int i=0;i<events.size();i++){
+    for(int i=0;i<eventCount;i++){
         if(events[i].type==type){
             cout<<"Event: "<<events[i].name<<"\nDate: "<<events[i].date<<"\n";
             found=true;
@@ -54,14 +54,12 @@ void filter(const vector<Event> & events){
     if(!found){
         cout<<"No events found in this Category.\n";
     }
-
-
 }
 
 /*-------------add events------------*/
 
 
-void add(vector<Event> &events){
+void add(){
     Event newevent;
 
     cout<<"----Add New Event----\n";
@@ -75,10 +73,10 @@ void add(vector<Event> &events){
         cout<<"Enter event type(cultural,technical,sports): ";
         getline(cin,newevent.type);
 
-        events.push_back(newevent);     /*used to add the event at the end */
+        events[eventCount++]=newevent;     
         cout<<"Successfully added the event!!\n";
     }
-    
+
 
 int main(){
     int choice;
@@ -96,13 +94,13 @@ int main(){
 
         switch(choice){
             case 1:
-                veiw(events);
+                view();
                 break;
             case 2:
-                filter(events);
+                filter();
                 break;
             case 3:
-                add(events);
+                add();
                 break;
             case 4:
                 break;
